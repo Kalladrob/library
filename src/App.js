@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import BookList from './Components/BookList';
+import { Title,
+         Menu,
+         CollapseButton,
+         OverMenu,
+         TitleDiv,
+         Link } from './AppStyled';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  
+  state = {
+    isCollapsed: false
+  }
+  
+  render = () => { 
+    return(
+      <>
+        <OverMenu>
+          <Menu collapsed = {this.state.isCollapsed}>
+            <TitleDiv collapsed = {this.state.isCollapsed}>
+              <Title>{this.state.isCollapsed ? `RaFB!` : `Read a Flippin' Book!`}</Title>
+              <Link>Teste</Link>
+              <Link>Teste</Link>
+            </TitleDiv>
+          </Menu>
+          <CollapseButton 
+            onClick={() => this.setState({isCollapsed: ! this.state.isCollapsed})}>
+            {this.state.isCollapsed ? '>' : '<'}
+          </CollapseButton>
+        </OverMenu>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={BookList}/>
+          </Switch>
+        </BrowserRouter>
+      </>
+  )};
 }
 
 export default App;
