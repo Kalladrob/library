@@ -4,7 +4,8 @@ export const OverMenu = styled.div`
     display: flex;
     flex-direction: row;
     height: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 20
+    px;
 ` 
 
 export const Menu = styled.div`
